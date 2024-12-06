@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Transaksi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #F1F1F1;
+            color: #626262;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .container {
+            padding: 15px;
+        }
+        .transaction {
+            background-color: #D9D9D9;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+        .transaction .date-time {
+            font-size: 14px;
+            color: #888;
+        }
+        .transaction .description {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        .transaction .amount {
+            font-size: 16px;
+            color: #333;
+        }
+        .transaction .amount.positive {
+            color: #439FD9;
+        }
+        .transaction .amount.negative {
+            color: #F44336;
+        }
+        .back-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #626262;
+        }
+    </style>
+</head>
+<body>
+    <header style="padding-top: 37px;">
+        Riwayat Transaksi
+    </header>
+    <div class="container">
+        <div class="transaction">
+            <div class="date-time">17 Sep 2024 - 08:07 WIB</div>
+            <div class="description">Top-Up GoPay</div>
+            <div class="amount negative">- Rp.126.000</div>
+        </div>
+        <div class="transaction">
+            <div class="date-time">21 Sep 2024 - 06:55 WIB</div>
+            <div class="description">Top-Up GoPay</div>
+            <div class="amount negative">- Rp.151.000</div>
+        </div>
+        <div class="transaction">
+            <div class="date-time">29 Sep 2024 - 10:45 WIB</div>
+            <div class="description">Terima Uang</div>
+            <div class="amount positive">+ Rp.230.000</div>
+        </div>
+        <div class="transaction">
+            <div class="date-time">3 Nov 2024 - 07:35 WIB</div>
+            <div class="description">Terima Uang</div>
+            <div class="amount positive">+ Rp.1.225.000</div>
+        </div>
+        <div class="transaction">
+            <div class="date-time">19 Nov 2024 - 16:14 WIB</div>
+            <div class="description">Top-Up OVO</div>
+            <div class="amount negative">- Rp.102.500</div>
+        </div>
+        <div class="transaction">
+            <div class="date-time">24 Nov 2024 - 21:07 WIB</div>
+            <div class="description">Top-Up OVO</div>
+            <div class="amount negative">- Rp.152.500</div>
+        </div>
+        <div class="transaction">
+            <div class="date-time">27 Nov 2024 - 09:21 WIB</div>
+            <div class="description">Terima Uang</div>
+            <div class="amount positive">+ Rp.2.550.000</div>
+        </div>
+        <div class="transaction">
+            <div class="date-time">29 Nov 2024 - 07:37 WIB</div>
+            <div class="description">Pembayaran Tagihan</div>
+            <div class="amount negative">- Rp.550.000</div>
+        </div>
+        <div class="transaction">
+            <div class="date-time">2 Des 2024 - 14:47 WIB</div>
+            <div class="description">Top-Up GoPay</div>
+            <div class="amount negative">- Rp.251.000</div>
+        </div>
+        <a href="javascript:history.back()" class="back-button">Kembali</a>
+    </div>
+</body>
+</html>
