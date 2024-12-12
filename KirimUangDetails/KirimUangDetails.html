@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .profile-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background-color: #f1f1f1;
+            color: #2B93FE;
+            font-size: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            border: 1px solid #626262;
+            font-weight: bold;
+        }
+        .profile-name {
+            margin: 10px 0 5px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #626262;
+        }
+        .profile-details {
+            font-size: 14px;
+            color: #888;
+        }
+        .input-container {
+            position: relative;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .currency-prefix {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .amount-input {
+            width: 100%;
+            padding: 10px 10px 10px 50px;
+            font-size: 24px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+            box-sizing: border-box;
+        }
+
+        .add-note {
+            font-size: 14px;
+            color: #2B93FE;
+            text-decoration: none;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .divider {
+            padding-top: 20px;
+            margin: 10px 0;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+        }
+        .divider span {
+            background-color: #fff;
+            padding: 0 0px;
+            font-size: 19px;
+            color: #888;
+        }
+        .account-section {
+            margin-bottom: 50px;
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+        .scrollable-container {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            gap: 10px;
+            padding: 0 10px;
+            will-change: transform;
+            overflow: visible;
+        }
+
+        .account-card {
+            flex: 0 0 96%;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .account-card img {
+            width: 150px;
+            height: 100px;
+            border-radius: 5px;
+        }
+        .account-details {
+            flex: 1;
+        }
+        .account-details p {
+            margin: 0;
+        }
+        .account-balance {
+            font-size: 16px;
+            padding-bottom: 5px;
+            color: #626262;
+        }
+        .account-amount {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2B93FE;
+        }
+        .account-card:hover {
+            transform: translateY(0px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+        .dots-indicator {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #ccc;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .dot.active {
+            background-color: #2B93FE;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .buttons button {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-send {
+            background-color: #2B93FE;
+            color: white;
+        }
+
+        .btn-send:hover {
+            background-color: #2168c1;
+        }
+
+        .btn-cancel {
+            background-color: #ccc;
+            color: #000000;
+        }
+
+        .btn-cancel:hover {
+            background-color: #aaa;
+            color: black;
+        }
+
+        .recommendation-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .recommend-btn {
+            padding: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background-color: #f1f1f1;
+            color: #626262;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .recommend-btn:hover {
+            background-color: #2B93FE;
+            color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+        .navigation-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 10px;
+        }
+        .arrow-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 1px solid #626262;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .left-arrow {
+            left: 10px;
+            top: 122px;
+        }
+        .right-arrow {
+            right: 10px;
+            top: 122px;
+        }
+        .arrow-btn:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-section">
+            <div class="profile-avatar">MZ</div>
+            <div class="profile-name">MEGUMI ZENIN</div>
+            <div class="profile-details">Bank Mandiri | 123123123123123</div>
+        </div>
+
+        <div class="input-container">
+            <span class="currency-prefix">Rp</span>
+            <input type="text" class="amount-input" placeholder="0">
+        </div>
+        
+        <a href="#!" class="add-note">Tambah Catatan</a>
+        <div class="recommendation-buttons">
+            <button type="button" class="recommend-btn" data-amount="50000">50.000</button>
+            <button type="button" class="recommend-btn" data-amount="100000">100.000</button>
+            <button type="button" class="recommend-btn" data-amount="200000">200.000</button>
+            <button type="button" class="recommend-btn" data-amount="500000">500.000</button>
+            <button type="button" class="recommend-btn" data-amount="1000000">1.000.000</button>
+            <button type="button" class="recommend-btn" data-amount="5000000">5.000.000</button>
+        </div>
+        
+
+        <div class="divider"><span>Rekening Sumber Dana</span></div>
+        <div class="account-section">
+            <!-- Panah Kiri -->
+            <button class="arrow-btn left-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z" fill="#000"></path>
+                </svg>
+            </button>
+        
+            <div class="scrollable-container">
+                <div class="account-card">
+                    <img src="card.png" alt="Bank Logo">
+                    <div class="account-details">
+                        <p class="account-balance">Mandiri Bisnis IDR</p>
+                        <p class="account-balance">1201381920381</p>
+                        <p class="account-amount">Rp 352.909.450</p>
+                    </div>
+                </div>
+                <div class="account-card">
+                    <img src="card2.jpg" alt="Bank Logo">
+                    <div class="account-details">
+                        <p class="account-balance">BNI Taplus</p>
+                        <p class="account-balance">128931872462</p>
+                        <p class="account-amount">Rp. 675.534.400</p>
+                    </div>
+                </div>
+                <div class="account-card">
+                    <img src="card3.png" alt="Bank Logo">
+                    <div class="account-details">
+                        <p class="account-balance">BCA Platinum</p>
+                        <p class="account-balance">1209381902321</p>
+                        <p class="account-amount">Rp 5.123.645.560.023</p>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Panah Kanan -->
+            <button class="arrow-btn right-arrow">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                    <path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z" fill="#000"></path>
+                </svg>
+            </button>
+        
+            <div class="dots-indicator">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        
+
+        <div class="buttons">
+            <button class="btn-send">Kirim</button>
+            <button class="btn-cancel">Kembali</button>
+        </div>
+    </div>
+    
+</body>
+<script>
+    const amountInput = document.querySelector('.amount-input');
+
+    amountInput.addEventListener('input', () => {
+        // Hapus karakter non-angka
+        let value = amountInput.value.replace(/[^0-9]/g, '');
+        
+        // Format angka menjadi ribuan
+        value = new Intl.NumberFormat('id-ID').format(value);
+        
+        // Set nilai baru ke input
+        amountInput.value = value;
+    });
+
+    // Mencegah pengguna mengetik karakter selain angka
+    amountInput.addEventListener('keypress', (event) => {
+        const charCode = event.which ? event.which : event.keyCode;
+        if (charCode < 48 || charCode > 57) {
+            event.preventDefault();
+        }
+    });
+    // Pilih elemen input dan semua tombol rekomendasi
+    const recommendInput = document.querySelector('.amount-input');
+    const recommendButtons = document.querySelectorAll('.recommend-btn');
+
+    // Tambahkan event listener ke setiap tombol
+    recommendButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Ambil nilai data-amount dari tombol yang diklik
+            const amount = button.getAttribute('data-amount');
+
+            // Format nilai menjadi format ribuan (contoh: 50000 -> 50.000)
+            const formattedAmount = new Intl.NumberFormat('id-ID').format(amount);
+
+            // Isi input dengan nilai yang diformat
+            recommendInput.value = formattedAmount;
+        });
+    });
+
+    const scrollableContainer = document.querySelector('.scrollable-container');
+    const dots = document.querySelectorAll('.dot');
+    const leftArrow = document.querySelector('.left-arrow');
+    const rightArrow = document.querySelector('.right-arrow');
+
+    let currentIndex = 0; // Indeks kartu aktif
+
+    // Fungsi untuk memperbarui tampilan kartu
+    function updateCard(index) {
+        scrollableContainer.style.transform = `translateX(-${index * 100}%)`;
+
+        // Perbarui titik aktif
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === index);
+        });
+    }
+
+    // Event listener untuk tombol panah kiri
+    leftArrow.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex -= 1; // Pindah ke kartu sebelumnya
+            updateCard(currentIndex);
+        }
+    });
+
+    // Event listener untuk tombol panah kanan
+    rightArrow.addEventListener('click', () => {
+        if (currentIndex < dots.length - 1) {
+            currentIndex += 1; // Pindah ke kartu berikutnya
+            updateCard(currentIndex);
+        }
+    });
+
+    // Klik titik untuk navigasi
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            currentIndex = index;
+            updateCard(currentIndex);
+        });
+    });
+
+</script>
+</html>
