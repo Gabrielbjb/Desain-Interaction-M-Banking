@@ -12,7 +12,12 @@
             background-color: #f5f5f5;
         }
         .container {
-            padding: 15px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         header {
             background-color: #F1F1F1;
@@ -40,8 +45,7 @@
             position: relative;
         }
         .search-bar {
-            width: 100%;
-            padding: 10px 15px;
+            padding: 10px 165px;
             font-size: 16px;
             border: 2px solid #ccc;
             border-radius: 5px;
@@ -188,7 +192,29 @@
         .new-account-button:active {
             background-color: #1a5099;
         }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .buttons button {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .back-button {
+            background-color: #ccc;
+            color: #626262;
+        }
 
+        .back-button:hover {
+            background-color: #aaa;
+        }
 
     </style>
 </head>
@@ -204,15 +230,15 @@
             <div class="favorite-list">
                 <a href="#!" class="favorite-item">
                     <div class="favorite-avatar">AB</div>
-                    <div class="favorite-name">Andi Budi</div>
+                    <div class="favorite-name">ANDI BUDI</div>
                 </a>
                 <a href="#!" class="favorite-item">
                     <div class="favorite-avatar">CT</div>
-                    <div class="favorite-name">Citra Tan</div>
+                    <div class="favorite-name">CITRA TANN</div>
                 </a>
                 <a href="#!" class="favorite-item">
                     <div class="favorite-avatar">DJ</div>
-                    <div class="favorite-name">Dewi Jaya</div>
+                    <div class="favorite-name">DEWI JASIMAH</div>
                 </a>
                 <a href="#!" class="favorite-item">
                     <div class="favorite-avatar ubah-favorit">✯</div>
@@ -225,24 +251,23 @@
             <div class="account-list">
                 <a href="#!" class="account-item">
                     <div class="account-avatar">NF</div>
-                    <div class="account-name">Nur Fadhila</div>
+                    <div class="account-name">NUR FARRAH</div>
                 </a>
                 <a href="#!" class="account-item">
-                    <div class="account-avatar">YU</div>
-                    <div class="account-name">Yuji Itadori</div>
+                    <div class="account-avatar">YI</div>
+                    <div class="account-name">YUJI ITADORI</div>
                 </a>
                 <a href="#!" class="account-item">
-                    <div class="account-avatar">GO</div>
-                    <div class="account-name">Gojo Satoru</div>
+                    <div class="account-avatar">GS</div>
+                    <div class="account-name">GOJO SATORU</div>
                 </a>
             </div>
         </div>
         <div class="new-account-button-container">
             <button class="new-account-button">Kirim ke Rekening Baru</button>
+            <a href="javascript:history.back()" class="back-button">Kembali</a>
         </div>
-        
-        
-        <a href="javascript:history.back()" class="back-button">Kembali</a>
+
     </div>
 </body>
 </html>
