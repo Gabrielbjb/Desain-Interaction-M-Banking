@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer ke Penerima Baru</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            height: 100vh;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header .title {
+            font-size: 20px;
+            font-weight: bold;
+            flex-grow: 1;
+            text-align: center;
+            color: #000;
+            padding-top: 15px;
+        }
+        .navigation-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .navigation-tabs .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            color: #626262;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .navigation-tabs .tab.active {
+            color: #2B93FE;
+            border-bottom: 2px solid #2B93FE;
+        }
+        .form-group {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            text-align: left;
+            position: relative;
+        }
+        .form-group label {
+            font-size: 16px;
+            color: #888;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #fff;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-group select:focus,
+        .form-group input:focus {
+            border-color: #2B93FE;
+            box-shadow: 0 0 5px rgba(43, 147, 254, 0.5);
+        }
+        .form-group:not(:last-child) {
+            margin-bottom: 20px;
+        }
+        .buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0 20px;
+            align-items: center;
+        }
+
+        .buttons button {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-next {
+            background-color: #2B93FE;
+            color: white;
+        }
+
+        .btn-next:hover {
+            background-color: #2168c1;
+        }
+
+        .btn-cancel {
+            background-color: #ccc;
+            color: #000000;
+        }
+
+        .btn-cancel:hover {
+            background-color: #aaa;
+            color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <span class="title">Transfer ke Penerima Baru</span>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="navigation-tabs">
+            <div class="tab active" id="tab-rekening">Rekening</div>
+            <div class="tab" id="tab-proxy">Proxy</div>
+        </div>
+
+        <!-- Form -->
+        <div class="form-group" id="form-bank">
+            <label for="bank">Nama Bank</label>
+            <select id="bank">
+                <option value="allo">Allo Bank</option>
+                <option value="bca">Bank Central Asia (BCA)</option>
+                <option value="bni">Bank Negara Indonesia (BNI)</option>
+                <option value="bri">Bank Rakyat Indonesia (BRI)</option>
+                <option value="bsi">Bank Syariah Indonesia (BSI)</option>
+                <option value="btn">Bank Tabungan Negara (BTN)</option>
+                <option value="cimb">Bank CIMB Niaga</option>
+                <option value="danamon">Bank Danamon Indonesia</option>
+                <option value="dki">Bank DKI</option>
+                <option value="mandiri">Bank Mandiri</option>
+            </select>
+        </div>
+        <div class="form-group" id="form-input">
+            <label for="input">Nomor Rekening</label>
+            <input type="text" id="input" placeholder="...">
+        </div>
+
+        <div class="buttons">
+            <button class="btn-next">Lanjutkan</button>
+            <button class="btn-cancel">Kembali</button>
+        </div>
+    </div>
+</body>
+<script>
+    const tabRekening = document.getElementById('tab-rekening');
+    const tabProxy = document.getElementById('tab-proxy');
+    const formBank = document.getElementById('form-bank');
+    const formInput = document.getElementById('form-input');
+    const inputField = document.getElementById('input');
+
+    // Event untuk klik tab "Rekening"
+    tabRekening.addEventListener('click', () => {
+        tabRekening.classList.add('active');
+        tabProxy.classList.remove('active');
+
+        // Tampilkan form bank dan ubah placeholder menjadi nomor rekening
+        formBank.style.display = 'block';
+        formInput.querySelector('label').textContent = 'Nomor Rekening';
+        inputField.placeholder = '...';
+        inputField.value = '';
+    });
+
+    // Event untuk klik tab "Proxy"
+    tabProxy.addEventListener('click', () => {
+        tabProxy.classList.add('active');
+        tabRekening.classList.remove('active');
+
+        // Sembunyikan form bank dan ubah placeholder menjadi nomor handphone/email
+        formBank.style.display = 'none';
+        formInput.querySelector('label').textContent = 'Nomor Handphone atau Email';
+        inputField.placeholder = '...';
+        inputField.value = '';
+    });
+
+    // Validasi input hanya angka (untuk Rekening)
+    inputField.addEventListener('input', function () {
+        if (tabRekening.classList.contains('active')) {
+            this.value = this.value.replace(/[^0-9]/g, '');
+            if (this.value.length > 16) {
+                this.value = this.value.slice(0, 16);
+            }
+        }
+    });
+</script>
+</html>
