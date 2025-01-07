@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kirim Uang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        header {
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .back-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: #626262;
+        }
+        .search-container {
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .search-bar {
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            padding: 10px;
+            text-indent: 29px;
+            background-image: url(../search.png);
+            background-size: 20px 20px;
+            background-position: 10px center;
+            background-repeat: no-repeat;
+            box-sizing: border-box;
+        }
+
+        .search-bar:focus {
+            border-color: #2B93FE;
+            box-shadow: 0 0 5px rgba(43, 147, 254, 0.5);
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            top: 47%;
+            left: 10px;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: #888;
+        }
+
+        .favorite-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .favorite-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .favorite-list {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .favorite-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        .favorite-item:hover {
+            background-color: #f0f8ff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+        .favorite-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            color: #2B93FE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            border: 1px solid #626262;
+        }
+        .favorite-name {
+            font-size: 14px;
+            color: #626262;
+        }
+        .ubah-favorit {
+            font-size: 50px;
+            line-height: 60px;
+            color: #2B93FE;
+        }
+        .other-accounts {
+            margin-top: 20px;
+            padding: 15px;
+
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .account-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            padding: 10px;
+
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        .account-item:hover {
+            background-color: #f0f8ff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        .account-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            color: #2B93FE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            border: 1px solid #ccc;
+        }
+
+        .account-name {
+            font-size: 16px;
+            color: #626262;
+            font-weight: bold;
+        }
+        .new-account-button-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .new-account-button {
+            background-color: #2B93FE;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+        }
+
+        .new-account-button:hover {
+            background-color: #2168c1;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .new-account-button:active {
+            background-color: #1a5099;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .buttons button {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .back-button {
+            background-color: #ccc;
+            color: #626262;
+        }
+
+        .back-button:hover {
+            background-color: #aaa;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>Kirim Uang</header>
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Cari rekening tujuan...">
+    </div>
+    <div class="favorite-section">
+        <div class="favorite-title">Tujuan Favorit</div>
+        <div class="favorite-list">
+            <a href="#!" class="favorite-item">
+                <div class="favorite-avatar">AB</div>
+                <div class="favorite-name">ANDI BUDI</div>
+            </a>
+            <a href="#!" class="favorite-item">
+                <div class="favorite-avatar">CT</div>
+                <div class="favorite-name">CITRA TANN</div>
+            </a>
+            <a href="#!" class="favorite-item">
+                <div class="favorite-avatar">DJ</div>
+                <div class="favorite-name">DEWI JASIMAH</div>
+            </a>
+            <a href="#!" class="favorite-item">
+                <div class="favorite-avatar ubah-favorit">✯</div>
+                <div class="favorite-name">Ubah Favorit</div>
+            </a>
+        </div>
+    </div>
+    <div class="other-accounts">
+        <div class="favorite-title">Rekening Lain</div>
+        <div class="account-list">
+            <a href="#!" class="account-item">
+                <div class="account-avatar">NF</div>
+                <div class="account-name">NUR FARRAH</div>
+            </a>
+            <a href="#!" class="account-item">
+                <div class="account-avatar">YI</div>
+                <div class="account-name">YUJI ITADORI</div>
+            </a>
+            <a href="#!" class="account-item">
+                <div class="account-avatar">GS</div>
+                <div class="account-name">GOJO SATORU</div>
+            </a>
+        </div>
+    </div>
+    <div class="new-account-button-container">
+        <a class="new-account-button" href="../web/KirimRekeningBaru.html">Kirim ke Rekening Baru</a>
+        <a href="javascript:history.back()" class="back-button">Kembali</a>
+    </div>
+
+</div>
+</body>
+</html>

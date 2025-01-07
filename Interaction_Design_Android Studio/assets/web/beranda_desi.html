@@ -1,0 +1,257 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabungan Pelajar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+        .header h1 {
+            font-size: 18px;
+            margin: 0;
+        }
+        .header .notification {
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .card {
+            background: #fff;
+            padding: 15px;
+            margin: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        .card .text-below {
+            font-size: 14px;
+            color: #007bff;
+            margin-top: 10px;
+        }
+        .card .account-number,
+        .card .balance {
+            font-size: 32px;
+            margin: 5px 0;
+            font-weight: bold;
+        }
+        .section {
+            padding: 15px;
+        }
+        .section h2 {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5%;
+            margin: 23px;
+        }
+        .grid .item {
+            text-align: center;
+            padding: 10px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer .icon {
+            text-align: center;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        /* Styling for the notification */
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Tabungan Pelajar</h1>
+    <div class="notification">
+        <img src="../notifikasi.png" style="width: 32px; display: block; margin-left: auto; margin-right: auto;">
+        <div style="font-size: 12px; text-align: center;">Notifikasi</div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="account-number" id="nomorRekening">0394105742</div>
+    <div class="text-below">
+        <a href="#" id="salinRekening">Salin Nomor Rekening</a>
+    </div>
+
+    <div class="balance" id="saldo">Rp 1.000.000</div>
+    <div class="text-below">
+        <a href="#" id="toggleSaldo">Sembunyikan Saldo</a>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Umum</h2>
+    <div class="grid">
+        <div>
+            <div class="item"><a href="../web/KirimUang.html"><img src="../kirim.png"></a></div>
+            <div style="text-align: center; padding-top: 19px;">Kirim Uang</div>
+        </div>
+        <div>
+            <div class="item"><img src="../DOMPET.png"></div>
+            <div style="text-align: center; padding-top: 19px;">Uang Elektronik</div>
+        </div>
+        <div>
+            <div class="item"><a href="bayar_tagihan.html"><img src="../tagihan.png"></a></div>
+            <div style="text-align: center; padding-top: 19px;">Bayar Tagihan</div>
+        </div>
+        <div>
+            <div class="item"><a href="../web/qris.html"><img src="../qr.png"></a></div>
+            <div style="text-align: center; padding-top: 19px;">QRIS</div>
+        </div>
+        <div>
+            <div class="item"><img src="../credit.png"></div>
+            <div style="text-align: center; padding-top: 19px;">Kartu Bank</div>
+        </div>
+        <div>
+            <div class="item"><a href="https://ojk.go.id/id/contact.aspx"><img src="../headphone.png"></a></div>
+            <div style="text-align: center; padding-top: 19px;">Bantuan</div>
+        </div>
+    </div>
+</div>
+
+<div class="section" style="padding-bottom: 14%;">
+    <h2>Investasi</h2>
+    <div class="grid">
+        <div>
+            <div class="item"><a href="https://www.nasdaq.com/solutions/transaction-reporting"><img src="../2.png"/></a></div>
+            <div style="text-align: center; padding-top: 19px;">Transaksi Investasi</div>
+        </div>
+        <div>
+            <div class="item"><a href="https://www.nasdaq.com/about"><img src="../portofolio.png"></a></div>
+            <div style="text-align: center; padding-top: 19px;">Portofolio Investasi</div>
+        </div>
+        <div>
+            <div class="item"><a href="https://www.nasdaq.com/market-activity/stocks"><img src="../investasi.png"/></a></div>
+            <div style="text-align: center; padding-top: 19px;">Investasi</div>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="icon">
+        <div><img src="../beranda.png" style="width: 32px;">
+            <div>Beranda</div>
+        </div>
+    </div>
+    <div class="icon">
+        <a href="../web/mobile_riwayat.html" style="text-decoration: none; color: inherit;">
+            <div><img src="../riwayat.png" style="width: 32px;">
+                <div>Riwayat</div>
+            </div>
+        </a>
+    </div>
+    <div class="icon">
+        <a href="../web/masuk_desi.html" style="text-decoration: none; color: inherit;">
+            <div><img src="../keluar.png" style="width: 32px;">
+                <div>Keluar</div>
+            </div>
+        </a>
+    </div>
+    <div class="icon">
+        <a href="https://pengaturan.com" style="text-decoration: none; color: inherit;">
+            <div><img src="../pengaturan.png" style="width: 32px;">
+                <div>Pengaturan</div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Notification element -->
+<div id="notification" class="notification" style="display: none;">
+    Nomor rekening telah disalin!
+</div>
+
+<script>
+    const salinRekeningButton = document.getElementById('salinRekening');
+    const nomorRekeningElement = document.getElementById('nomorRekening');
+    const notification = document.getElementById('notification');
+
+    salinRekeningButton.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        const tempInput = document.createElement('input');
+        tempInput.value = nomorRekeningElement.innerText;
+        document.body.appendChild(tempInput);
+
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        // Tampilkan notifikasi
+        notification.style.display = 'block';
+        notification.style.opacity = '1';
+
+        // Sembunyikan notifikasi setelah 3 detik
+        setTimeout(function() {
+            notification.style.opacity = '0';
+            setTimeout(function() {
+                notification.style.display = 'none';
+            }, 500); // Waktu transisi hilang
+        }, 3000); // 3 detik
+    });
+
+    const saldoElement = document.getElementById('saldo');
+    const toggleSaldoButton = document.getElementById('toggleSaldo');
+
+    let saldoTersembunyi = false;
+    const saldoAsli = saldoElement.innerText;
+    toggleSaldoButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        if (saldoTersembunyi) {
+            saldoElement.innerText = saldoAsli;
+            toggleSaldoButton.innerText = 'Sembunyikan Saldo';
+        } else {
+            const bintang = saldoAsli.replace(/[0-9.]/g, '*');
+            saldoElement.innerText = bintang;
+            toggleSaldoButton.innerText = 'Tampilkan Saldo';
+        }
+        saldoTersembunyi = !saldoTersembunyi;
+    });
+</script>
+
+</body>
+</html>
